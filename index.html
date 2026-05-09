@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digify Indian Agency</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050505;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* Background Effects */
+
+body::before{
+  content:'';
+  position:fixed;
+  width:500px;
+  height:500px;
+  background:#0066ff33;
+  filter:blur(120px);
+  top:-200px;
+  right:-150px;
+  z-index:-1;
+}
+
+body::after{
+  content:'';
+  position:fixed;
+  width:450px;
+  height:450px;
+  background:#ff000022;
+  filter:blur(120px);
+  bottom:-200px;
+  left:-150px;
+  z-index:-1;
+}
+
+/* Header */
+
+header{
+  width:100%;
+  padding:18px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:999;
+  backdrop-filter:blur(15px);
+  background:rgba(0,0,0,0.65);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo-wrapper{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo-img{
+  width:70px;
+  height:70px;
+  object-fit:contain;
+}
+
+.logo{
+  font-size:30px;
+  font-weight:800;
+  background:linear-gradient(90deg,#ffffff,#00aaff,#ffd700);
+  background-clip: text;
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+
+.owner{
+  font-size:12px;
+  color:#ffd700;
+  margin-top:4px;
+}
+
+nav a{
+  text-decoration:none;
+  color:white;
+  margin-left:30px;
+  font-weight:500;
+  transition:0.3s;
+  position:relative;
+}
+
+nav a::after{
+  content:'';
+  position:absolute;
+  width:0%;
+  height:2px;
+  left:0;
+  bottom:-6px;
+  background:#00aaff;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+nav a:hover{
+  color:#00aaff;
+}
+
+/* Hero */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:120px 8% 80px;
+  gap:60px;
+}
+
+.hero-text{
+  max-width:650px;
+}
+
+.tag{
+  display:inline-block;
+  padding:12px 24px;
+  border:1px solid #00aaff;
+  border-radius:50px;
+  color:#00aaff;
+  background:#00aaff11;
+  margin-bottom:30px;
+  font-size:14px;
+  letter-spacing:1px;
+}
+
+.hero h1{
+  font-size:72px;
+  line-height:1.1;
+  margin-bottom:25px;
+  font-weight:800;
+}
+
+.hero h1 span{
+  color:#00aaff;
+  text-shadow:0 0 25px #00aaff;
+}
+
+.hero p{
+  color:#d7d7d7;
+  line-height:1.9;
+  font-size:18px;
+  margin-bottom:40px;
+}
+
+/* Buttons */
+
+.buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:16px 36px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.4s;
+}
+
+.primary{
+  background:linear-gradient(90deg,#0066ff,#00aaff);
+  color:white;
+  box-shadow:0 0 30px #0066ff55;
+}
+
+.primary:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 40px #00aaff;
+}
+
+.secondary{
+  border:1px solid #ffd700;
+  color:#ffd700;
+}
+
+.secondary:hover{
+  background:#ffd700;
+  color:black;
+}
+
+/* Hero Card */
+
+.hero-image{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.slider-card{
+  width:430px;
+  min-height:320px;
+  position:relative;
+  overflow:hidden;
+  border-radius:30px;
+  padding:40px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  box-shadow:
+  0 0 30px rgba(0,102,255,0.25),
+  0 0 60px rgba(255,0,0,0.12);
+}
+
+.slide{
+  position:absolute;
+  opacity:0;
+  transform:translateY(25px);
+  transition:0.7s ease;
+  text-align:center;
+}
+
+.slide.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.slide h2{
+  font-size:34px;
+  color:#00aaff;
+  margin-bottom:20px;
+}
+
+.slide p{
+  color:#d7d7d7;
+  line-height:1.8;
+}
+
+/* Sections */
+
+section{
+  padding:110px 8%;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.section-title h2{
+  font-size:54px;
+  margin-bottom:15px;
+}
+
+.section-title span{
+  color:#00aaff;
+}
+
+.section-title p{
+  color:#bbbbbb;
+  font-size:18px;
+}
+
+/* Services */
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.service-card{
+  position:relative;
+  overflow:hidden;
+  padding:40px;
+  border-radius:25px;
+  background:linear-gradient(145deg,#0d0d0d,#111827);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.4s;
+}
+
+.service-card::before{
+  content:'';
+  position:absolute;
+  width:220px;
+  height:220px;
+  background:#0066ff22;
+  border-radius:50%;
+  top:-120px;
+  right:-120px;
+  transition:0.4s;
+}
+
+.service-card:hover::before{
+  transform:scale(1.5);
+}
+
+.service-card:hover{
+  transform:translateY(-10px);
+  border-color:#00aaff;
+  box-shadow:0 0 35px rgba(0,170,255,0.2);
+}
+
+.service-card h3{
+  color:#ffd700;
+  font-size:25px;
+  margin-bottom:18px;
+}
+
+.service-card p{
+  color:#d4d4d4;
+  line-height:1.8;
+}
+
+/* Pricing */
+
+.pricing-box{
+  max-width:700px;
+  margin:auto;
+  text-align:center;
+  padding:60px;
+  border-radius:35px;
+  background:linear-gradient(145deg,#0a0a0a,#101a35);
+  border:1px solid #00aaff44;
+  box-shadow:0 0 45px rgba(0,102,255,0.2);
+}
+
+.popular{
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:50px;
+  background:#ff000022;
+  color:#ff4d4d;
+  margin-bottom:25px;
+  font-weight:600;
+}
+
+.pricing-box h3{
+  font-size:34px;
+  margin-bottom:20px;
+}
+
+.price{
+  font-size:75px;
+  color:#00aaff;
+  font-weight:800;
+  margin:25px 0;
+}
+
+.pricing-box p{
+  color:#d4d4d4;
+  line-height:1.8;
+  margin-bottom:35px;
+}
+
+/* Contact */
+
+.contact{
+  text-align:center;
+}
+
+.contact h2{
+  font-size:58px;
+  margin-bottom:20px;
+}
+
+.contact p{
+  color:#cccccc;
+  font-size:18px;
+  margin-bottom:40px;
+}
+
+.contact-box{
+  margin-bottom:35px;
+}
+
+.contact-name{
+  font-size:34px;
+  color:#00aaff;
+  font-weight:700;
+}
+
+.contact-role{
+  color:#ffd700;
+  font-size:16px;
+}
+
+.contact-number{
+  margin-top:10px;
+  font-size:24px;
+  color:white;
+}
+
+/* CTA */
+
+.cta{
+  text-align:center;
+}
+
+.cta-box{
+  max-width:1000px;
+  margin:auto;
+  padding:70px;
+  border-radius:35px;
+  background:linear-gradient(145deg,#0d0d0d,#131313);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 0 40px rgba(255,0,0,0.12);
+}
+
+.cta-box h2{
+  font-size:50px;
+  margin-bottom:20px;
+}
+
+.cta-box p{
+  color:#d4d4d4;
+  line-height:1.9;
+  margin-bottom:35px;
+}
+
+/* Footer */
+
+footer{
+  text-align:center;
+  padding:35px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  color:#9a9a9a;
+}
+
+/* WhatsApp Button */
+
+.whatsapp{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  background:linear-gradient(90deg,#00aaff,#0066ff);
+  color:white;
+  padding:16px 24px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 0 30px rgba(0,102,255,0.5);
+  transition:0.3s;
+  z-index:999;
+}
+
+.whatsapp:hover{
+  transform:translateY(-5px);
+}
+
+/* Responsive */
+
+@media(max-width:950px){
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .hero h1{
+    font-size:50px;
+  }
+
+  .buttons{
+    justify-content:center;
+  }
+
+  .slider-card{
+    width:100%;
+  }
+
+  .section-title h2,
+  .contact h2,
+  .cta-box h2{
+    font-size:40px;
+  }
+
+  .logo-wrapper{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+
+  .logo-img{
+    width:60px;
+    height:60px;
+  }
+
+}
+
+</style>
+</head>
+<!-- ===== POPUP START ===== -->
+
+<div id="pricingPopup" class="popup-overlay">
+
+  <div class="popup-box">
+
+    <span class="close-popup" onclick="closePopup()">&times;</span>
+
+    <div class="popup-tag">
+      🔥 Affordable Pricing Corner
+    </div>
+
+    <h2>Grow Your Business<br>At Budget-Friendly Prices</h2>
+
+    <p>
+      Professional digital marketing, video editing,
+      ads management and branding solutions starting at
+      very affordable packages.
+    </p>
+
+    <div class="popup-prices">
+
+      <div class="popup-price-card">
+        <h3>Basic</h3>
+        <h1>₹7,999</h1>
+      </div>
+
+      <div class="popup-price-card active-price">
+        <h3>Standard</h3>
+        <h1>₹19,999</h1>
+      </div>
+
+      <div class="popup-price-card">
+        <h3>Premium</h3>
+        <h1>₹29,999</h1>
+      </div>
+
+    </div>
+
+    <a href="#pricing" class="popup-btn" onclick="closePopup()">
+      View Full Pricing
+    </a>
+
+  </div>
+
+</div>
+
+<style>
+
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(8px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+  animation:fadeIn 0.5s ease;
+}
+
+.popup-box{
+  width:90%;
+  max-width:750px;
+  background:linear-gradient(145deg,#0f172a,#020617);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:30px;
+  padding:50px;
+  text-align:center;
+  position:relative;
+  box-shadow:
+  0 0 40px rgba(0,170,255,0.25);
+  animation:popupUp 0.5s ease;
+}
+
+.popup-tag{
+  display:inline-block;
+  padding:10px 22px;
+  border-radius:50px;
+  background:#00aaff22;
+  color:#38bdf8;
+  font-weight:600;
+  margin-bottom:25px;
+}
+
+.popup-box h2{
+  font-size:42px;
+  line-height:1.3;
+  margin-bottom:20px;
+  color:white;
+}
+
+.popup-box p{
+  color:#cbd5e1;
+  line-height:1.8;
+  margin-bottom:35px;
+  font-size:17px;
+}
+
+.popup-prices{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:35px;
+}
+
+.popup-price-card{
+  background:#111827;
+  padding:25px;
+  border-radius:20px;
+  width:180px;
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.3s;
+}
+
+.popup-price-card h3{
+  color:white;
+  margin-bottom:12px;
+}
+
+.popup-price-card h1{
+  color:#38bdf8;
+  font-size:38px;
+}
+
+.active-price{
+  border:2px solid #38bdf8;
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(56,189,248,0.25);
+}
+
+.popup-btn{
+  display:inline-block;
+  padding:15px 35px;
+  background:linear-gradient(90deg,#0066ff,#00aaff);
+  color:white;
+  text-decoration:none;
+  border-radius:50px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.popup-btn:hover{
+  transform:translateY(-4px);
+}
+
+.close-popup{
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:34px;
+  color:white;
+  cursor:pointer;
+}
+
+@keyframes popupUp{
+  from{
+    opacity:0;
+    transform:translateY(40px) scale(0.9);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+@media(max-width:768px){
+
+  .popup-box{
+    padding:35px 25px;
+  }
+
+  .popup-box h2{
+    font-size:30px;
+  }
+
+  .popup-price-card{
+    width:100%;
+  }
+
+}
+
+</style>
+
+<script>
+
+function closePopup(){
+  document.getElementById("pricingPopup").style.display = "none";
+}
+
+window.onload = function(){
+
+  setTimeout(() => {
+
+    document.getElementById("pricingPopup").style.display = "flex";
+
+  }, 1200);
+
+}
+
+</script>
+
+<!-- ===== POPUP END ===== -->
+<body>
+
+<header>
+
+<div class="logo-wrapper">
+
+<!-- LOGO IMAGE -->
+<img src="C:\Users\DELL\Desktop\Dhruv\Business\Logo.png" alt="Digify India Logo" class="logo-img">
+
+<div>
+<div class="logo">DIGIFY INDIA</div>
+<div class="owner">Founder & Owner : Dhruv Saini</div>
+<div class="owner">Manager         : Tanmay Garg</div>
+</div>
+
+</div>
+
+<nav>
+<a href="#services">Services</a>
+<a href="#pricing">Pricing</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-text">
+<br> <br>
+<div class="tag">PREMIUM DIGITAL AGENCY</div>
+
+<h1>
+Grow Your <span>Business</span><br>
+With Creative <span>Digital Solutions</span>
+</h1>
+
+<p>
+We help brands grow online with professional video editing, Meta Ads,
+Google Ads, social media management and premium branding solutions.
+</p>
+
+<div class="buttons">
+<a href="#contact" class="btn primary">Contact Now</a>
+<a href="#services" class="btn secondary">Explore Services</a>
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<div class="slider-card">
+
+<div class="slide active">
+<h2>🎬 Video Editing</h2>
+<p>
+Professional reels, cinematic edits, YouTube videos and premium content creation.
+</p>
+</div>
+
+<div class="slide">
+<h2>📢 Meta Ads</h2>
+<p>
+High-converting Facebook & Instagram ads for business growth and leads.
+</p>
+</div>
+
+<div class="slide">
+<h2>📱 Social Media</h2>
+<p>
+Complete management of Instagram, Facebook, LinkedIn and business pages.
+</p>
+</div>
+
+<div class="slide">
+<h2>🚀 Brand Growth</h2>
+<p>
+Modern branding and digital strategies to build a powerful online presence.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<div class="section-title">
+<h2>Premium <span>Services</span></h2>
+<p>Professional digital solutions designed for business growth.</p>
+</div>
+
+<div class="services">
+
+<div class="service-card">
+<h3>Video Editing</h3>
+<p>
+Professional reels, YouTube edits, ads, shorts and cinematic content creation.
+</p>
+</div>
+
+<div class="service-card">
+<h3>Meta Ads</h3>
+<p>
+High-performance Facebook & Instagram ad campaigns to generate leads.
+</p>
+</div>
+
+<div class="service-card">
+<h3>Google Ads</h3>
+<p>
+Professional Google and YouTube advertising management services.
+</p>
+</div>
+
+<div class="service-card">
+<h3>Social Media Management</h3>
+<p>
+Complete handling of business pages and social media branding.
+</p>
+</div>
+
+<div class="service-card">
+<h3>Account Setup</h3>
+<p>
+Professional setup and optimization of social media business accounts.
+</p>
+</div>
+
+<div class="service-card">
+<h3>Brand Growth</h3>
+<p>
+Build a powerful online presence with modern digital growth strategies.
+</p>
+</div>
+
+</div>
+
+</section>
+<!-- ===== STATS SECTION START ===== -->
+<section class="stats-section">
+  <div class="stats-container">
+
+    <div class="stat-box">
+      <h2 class="counter" data-target="1000">0</h2>
+      <p>Website Visitors</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 class="counter" data-target="500">0</h2>
+      <p>Happy Clients</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 class="counter" data-target="2500">0</h2>
+      <p>Working Hours</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 class="counter" data-target="200">0</h2>
+      <p>Rating & Reviews</p>
+    </div>
+
+  </div>
+</section>
+<!-- ===== STATS SECTION END ===== -->
+
+<style>
+.stats-section{
+    width:100%;
+    padding:80px 10%;
+    background:#0f172a;
+}
+
+.stats-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.stat-box{
+    background:#1e293b;
+    padding:40px 20px;
+    text-align:center;
+    border-radius:20px;
+    transition:0.4s ease;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.stat-box:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.stat-box h2{
+    font-size:48px;
+    color:#38bdf8;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.stat-box p{
+    color:white;
+    font-size:18px;
+    font-weight:500;
+}
+</style>
+
+<script>
+const counters = document.querySelectorAll('.counter');
+
+const speed = 200;
+
+const startCounter = () => {
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+
+      const increment = target / speed;
+
+      if(count < target){
+        counter.innerText = (count + increment).toFixed(target % 1 !== 0 ? 1 : 0);
+        setTimeout(updateCount, 10);
+      } else {
+        counter.innerText = target + "+";
+      }
+    };
+
+    updateCount();
+  });
+};
+
+let started = false;
+
+window.addEventListener('scroll', () => {
+  const section = document.querySelector('.stats-section');
+
+  const sectionTop = section.getBoundingClientRect().top;
+
+  if(sectionTop < window.innerHeight && !started){
+    startCounter();
+    started = true;
+  }
+});
+</script>
+<!-- ===== PRICING SECTION START ===== -->
+<section class="pricing-section">
+  <h2 class="pricing-title">Our Packages</h2>
+
+  <div class="pricing-container">
+
+    <!-- Basic Plan -->
+    <div class="pricing-card">
+      <h3>Basic</h3>
+      <h1>₹7,999</h1>
+      <p>Perfect for small businesses</p>
+
+      <ul>
+        <li>✔ Social Media Management</li>
+        <li>✔ 10 Posts Design</li>
+        <li>✔ Basic SEO</li>
+        <li>✔ 1 Week Support</li>
+      </ul>
+
+      <a href="#contact" class="price-btn">Get Started</a>
+    </div>
+
+    <!-- Standard Plan -->
+    <div class="pricing-card popular">
+      <span class="tag">Most Popular</span>
+      <h3>Standard</h3>
+      <h1>₹19,999</h1>
+      <p>Best for growing brands</p>
+
+      <ul>
+        <li>✔ Full Social Media Handling</li>
+        <li>✔ 30 Creative Posts</li>
+        <li>✔ Advanced SEO</li>
+        <li>✔ Meta Ads Setup</li>
+        <li>✔ 24/7 Support</li>
+         <li>✔ 15 Days Support</li>
+      </ul>
+
+      <a href="#contact" class="price-btn">Get Started</a>
+    </div>
+
+    <!-- Premium Plan -->
+    <div class="pricing-card">
+      <h3>Premium</h3>
+      <h1>₹29,999</h1>
+      <p>For professional business growth</p>
+
+      <ul>
+        <li>✔ Full Branding</li>
+        <li>✔ Website + SEO</li>
+        <li>✔ Ads Management</li>
+        <li>✔ Premium Designs</li>
+        <li>✔ Priority Support</li>
+        <li>✔ Monthly Support</li>
+      </ul>
+
+      <a href="#contact" class="price-btn">Get Started</a>
+    </div>
+
+  </div>
+</section>
+<!-- ===== PRICING SECTION END ===== -->
+
+<style>
+.pricing-section{
+    padding:90px 10%;
+    background:#020617;
+    text-align:center;
+}
+
+.pricing-title{
+    color:white;
+    font-size:42px;
+    margin-bottom:50px;
+}
+
+.pricing-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.pricing-card{
+    background:#1e293b;
+    padding:40px 30px;
+    border-radius:25px;
+    position:relative;
+    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.pricing-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+.pricing-card h3{
+    color:white;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.pricing-card h1{
+    color:#38bdf8;
+    font-size:52px;
+    margin-bottom:10px;
+}
+
+.pricing-card p{
+    color:#cbd5e1;
+    margin-bottom:25px;
+}
+
+.pricing-card ul{
+    list-style:none;
+    padding:0;
+    margin-bottom:30px;
+}
+
+.pricing-card ul li{
+    color:white;
+    margin:12px 0;
+    font-size:16px;
+}
+
+.price-btn{
+    display:inline-block;
+    padding:12px 28px;
+    background:#38bdf8;
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.price-btn:hover{
+    background:#0ea5e9;
+}
+
+.popular{
+    border:2px solid #38bdf8;
+    transform:scale(1.05);
+}
+
+.tag{
+    position:absolute;
+    top:-12px;
+    right:20px;
+    background:#38bdf8;
+    color:white;
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:14px;
+}
+</style>
+
+<!-- PRICING -->
+
+<section id="pricing">
+
+<div class="section-title">
+<h2>Affordable <span>Pricing</span></h2>
+</div>
+
+<div class="pricing-box">
+
+<div class="popular">Value For Money</div>
+
+<h3>Complete Digital Team Management</h3>
+
+<div class="price">₹ 29,999</div>
+
+<p>
+Professional monthly digital management including video editing,
+ads management, branding and complete business growth support.
+</p>
+
+<a href="#contact" class="btn primary">Get Started</a>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact"> 
+
+<h2>Let's Grow Together</h2>
+
+<p>
+Take your business to the next level with premium digital services.  
+</p>
+
+<div class="contact-box">
+<div class="contact-name">Dhruv Saini</div>
+<div class="contact-role">Owner</div>
+<div class="contact-number">+91 89012 95560</div>
+</div>
+
+<div class="contact-box">
+<div class="contact-name">Tanmay Garg</div>
+<div class="contact-role">Manager</div>
+<div class="contact-number">+91 93504 92700</div>
+</div>
+
+</section>
+
+<!-- TEAM SECTION -->
+<section class="team-section">
+  <div class="team-top-text">
+    Passionate entrepreneurs dedicated to bring your business into<br>
+    the digital future.
+  </div>
+
+  <div class="team-container">
+
+    <!-- LEFT CARD -->
+    <div class="team-card blue-card">
+      <div class="overlay"></div>
+
+      
+      <div class="team-content">
+        <div class="profile-row">
+          <img src="C:\Users\DELL\Desktop\Dhruv\Business\Dhruv.jpg" alt="Dhruv" class="profile-img">
+
+          
+
+          <div>
+            <h2>Dhruv</h2>
+            <p class="role blue-text">Co-Founder & Lead Developer</p>
+          </div>
+        </div>
+
+        <p class="description">
+          Dhruv is the technical backbone of the agency, specializing in modern web technologies,
+           digital growth strategies. With a strong passion for 
+           innovation and performance-driven development, he focuses on building impactful brand
+            identities, generating quality leads, increasing business sales, and creating professional,
+             high-converting websites that deliver real and measurable results.
+        </p>
+
+        <div class="tags">
+          
+          <span>Website Developer</span>
+          <span>Performance Optimization</span>
+          <span>Brand Growth</span> 
+          <span>Ads Management</span> 
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT CARD -->
+    <div class="team-card purple-card">
+
+      <div class="team-content">
+        <div class="profile-row">
+          <img src="C:\Users\DELL\Desktop\Dhruv\Business\Tanmay.jpeg" alt="Tanmay" class="profile-img">
+
+          <div>
+            <h2>Tanmay</h2>
+            <p class="role purple-text">Manager & Design Strategist</p>
+          </div>
+        </div>
+
+        <p class="description">
+         Tanmay supports the creative side of the agency with modern 
+         and clean design ideas. With a good eye for visuals and branding,
+          he helps create attractive social media creatives, website layouts,
+           and digital designs that give businesses a professional and impactful online presence.
+
+        </p>
+
+        <div class="tags purple-tags">
+          <span>AI Design</span>
+          <span>Brand Strategy</span>  
+
+          <span> Digital Marketing</span>
+          <span>Social Media</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#020617;
+  font-family:'Poppins',sans-serif;
+}
+
+/* SECTION */
+.team-section{
+  width:100%;
+  padding:90px 8%;
+  background:
+  radial-gradient(circle at center,#08164b 0%, #020617 70%);
+}
+
+/* TOP TEXT */
+.team-top-text{
+  text-align:center;
+  color:#b8bfd6;
+  font-size:20px;
+  line-height:1.7;
+  margin-bottom:70px;
+  font-style:italic;
+}
+
+/* CONTAINER */
+.team-container{
+  display:flex;
+  gap:40px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+/* CARD */
+.team-card{
+  position:relative;
+  width:600px;
+  min-height:400px;
+  border-radius:24px;
+  overflow:hidden;
+  backdrop-filter:blur(10px);
+  padding:40px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(5,10,25,0.75);
+  transition:0.4s;
+}
+
+.team-card:hover{
+  transform:translateY(-8px);
+}
+
+/* BLUE GLOW */
+.blue-card{
+  box-shadow:
+  0 0 40px rgba(0,174,255,0.25);
+}
+
+/* PURPLE GLOW */
+.purple-card{
+  box-shadow:
+  0 0 40px rgba(140,82,255,0.25);
+}
+
+/* BACKGROUND IMAGE */
+.bg-image{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:70%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.55;
+}
+
+/* DARK OVERLAY */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+  90deg,
+  rgba(0,0,0,0.95) 10%,
+  rgba(0,0,0,0.4) 65%,
+  transparent 100%);
+}
+
+/* CONTENT */
+.team-content{
+  position:relative;
+  z-index:2;
+}
+
+/* PROFILE */
+.profile-row{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-bottom:30px;
+}
+
+.profile-circle{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  border:3px solid #00c8ff;
+  background:#1d244d;
+}
+
+.profile-img{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  border:3px solid #8b5cf6;
+  object-fit:cover;
+}
+
+/* NAME */
+h2{
+  color:white;
+  font-size:48px;
+  font-weight:700;
+}
+
+.role{
+  font-size:18px;
+  margin-top:5px;
+  font-weight:500;
+}
+
+.blue-text{
+  color:#00c8ff;
+}
+
+.purple-text{
+  color:#a855f7;
+}
+
+/* DESCRIPTION */
+.description{
+  color:#b7bfd1;
+  line-height:2;
+  font-size:18px;
+  margin-bottom:25px;
+  max-width:90%;
+}
+
+/* TAGS */
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.tags span{
+  padding:10px 18px;
+  border-radius:50px;
+  font-size:15px;
+  font-weight:500;
+}
+
+/* BLUE TAGS */
+.blue-card .tags span{
+  color:#00c8ff;
+  border:1px solid rgba(0,200,255,0.4);
+  background:rgba(0,200,255,0.08);
+  box-shadow:0 0 10px rgba(0,200,255,0.15);
+}
+
+/* PURPLE TAGS */
+.purple-tags span{
+  color:#b26cff;
+  border:1px solid rgba(178,108,255,0.4);
+  background:rgba(178,108,255,0.08);
+  box-shadow:0 0 10px rgba(178,108,255,0.15);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+  .team-card{
+    width:100%;
+    padding:30px;
+  }
+
+  h2{
+    font-size:34px;
+  }
+
+  .description{
+    font-size:16px;
+    max-width:100%;
+  }
+
+  .bg-image{
+    width:100%;
+    opacity:0.25;
+  }
+
+  .team-top-text{
+    font-size:16px;
+  }
+}
+</style>
+
+<!-- CTA -->
+
+<section class="cta">
+
+<div class="cta-box">
+
+<h2>Ready To Scale Your Business?</h2>
+
+<p>
+Work with Dhruv Saini & Tanmay Garg for professional digital growth,
+premium content creation and complete online branding solutions.
+</p>
+
+<a href="#contact" class="btn primary">
+Start Your Growth Journey
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+© 2026 Dhruv Saini & Tanmay Garg Digital Agency — All Rights Reserved.
+</footer>
+
+<!-- WHATSAPP -->
+
+<a href="https://wa.me/918901295560" class="whatsapp" target="_blank">
+Chat on WhatsApp
+</a>
+
+<!-- SLIDER SCRIPT -->
+
+<script>
+
+const slides = document.querySelectorAll('.slide');
+
+let currentSlide = 0;
+
+function showSlide(){
+
+slides.forEach(slide=>{
+slide.classList.remove('active');
+});
+
+slides[currentSlide].classList.add('active');
+
+currentSlide = (currentSlide + 1) % slides.length;
+
+}
+
+setInterval(showSlide,3000);
+
+</script>
+
+
+</body>
+</html>                           
